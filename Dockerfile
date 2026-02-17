@@ -5,6 +5,8 @@ FROM ros:jazzy
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
 
 # Install system dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -15,7 +17,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     lld \
     ninja-build \
     python3-pip \
-    usbutils
+    usbutils \
+    ros-jazzy-rmw-cyclonedds-cpp
+    
 
 # Install uv (Python package manager)
 COPY --from=ghcr.io/astral-sh/uv:0.8.18 /uv /uvx /bin/
